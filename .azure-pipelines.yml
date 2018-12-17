@@ -8,23 +8,8 @@ jobs:
     displayName: 'Use Node 8.x'
     inputs:
       versionSpec: 8.x
-
   - script: |
       npm ci
-
-- job: macOS
-  pool:
-    vmImage: 'macOS-10.13'
-
-  steps:
-  - task: NodeTool@0
-    displayName: 'Use Node 8.x'
-    inputs:
-      versionSpec: 8.x
-
-  - script: |
-      npm ci
-
 
 - job: Linux
   pool:
@@ -44,5 +29,7 @@ jobs:
 
   - script: |
       npm ci
+      npm run build
+      node node_modules/vscode/bin/test
     env:
       DISPLAY: :10
